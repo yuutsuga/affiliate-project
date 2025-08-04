@@ -35,3 +35,4 @@ Thumbs.db
 # Testes
 coverage/
 *.lcov
+/src/generated/prisma
