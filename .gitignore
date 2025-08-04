@@ -14,7 +14,7 @@ build/
 
 # Prisma
 .prisma/
-.env/
+.env
 .env.local
 .env.*.local
 
