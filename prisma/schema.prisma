@@ -8,9 +8,30 @@ datasource db {
 }
 
 model Afiliado {
-  id        String @id @default(uuid())
-  nome      String
-  email     String @unique
-  senha     String
-  CriadoEm  DateTime @default(now())
+  id       String         @id @default(uuid())
+  nome     String
+  email    String         @unique
+  senha    String
+  CriadoEm DateTime       @default(now())
+  links    LinkAfiliado[]
+}
+
+model LinkAfiliado {
+  id         String   @id @default(uuid())
+  codigo     String   @unique
+  urlDestino String
+  afiliadoId String
+  criadoEm   DateTime @default(now())
+
+  afiliado Afiliado @relation(fields: [afiliadoId], references: [id])
+  cliques  Clique[]
+}
+
+model Clique {
+  id        String       @id @default(uuid())
+  linkId    String
+  ip        String
+  userAgent String
+  criadoEm  DateTime     @default(now())
+  link      LinkAfiliado @relation(fields: [linkId], references: [id])
 }
